@@ -1,47 +1,29 @@
-function MyCtrl($scope) {
-	$scope.visible = true;
-	$scope.val=5;
-	$scope.ambito = "test";
-	$scope.toggle = function() {
-		$scope.visible = !$scope.visible;
-	}
+(function(){
+	'use strict';
 
-	$scope.getVal = function(){
-		return $scope.val + 1;
-	}
+	var blog = angular.module('blog', ['ngRoute','blogController']);
 
-	$scope.name = "";
-	$scope.$watch("name",function(newValue,oldValue){
-		console.log(oldValue);
-		if ($scope.name.length > 0) {
-			$scope.greeting = "Greeting" + $scope.name;
-		};
-	})
-}
 
-var app = angular.module("myApp",[]);
+	blog.config(['$locationProvider','$routeProvider',function($locationProvider,$routeProvider){
 
-app.run(function($rootScope){
-	$rootScope.nameTest = "hola mundo";
-})
+		$routeProvider	
+			.when("/",{
+				templateUrl:'views/post-list.html',
+				controller:'PostListCtrl',
+				controllerAs:'postlist'
+			})
+			.when('/post/:postId',{
+				templateUrl:'views/post-detail.html',
+				controller:'PostDetailCtrl',
+				controllerAs:'postdetail'
+			})
+			.when('/new',{
+				templateUrl: 'views/post-create.html',
+				controller: 'PostCreateCtrl',
+				controllerAs:'postCreate'
+			});
 
-app.factory("UserService",function(){
-	var users = ["peter","daniel","Nina"];
+			$locationProvider.html5Mode(true);
+	}]);
 
-	return {
-		all: function(){
-			return users;
-		},
-		first: function(){
-			return users[0];
-		}
-	}
-});
-
-app.controller("MyCtrl2",function($scope,UserService){
-	$scope.users = UserService.all();
-});
-
-app.controller("AnotherCtrl",function($scope,UserService){
-	$scope.firstUser = UserService.first();
-})
+})();
