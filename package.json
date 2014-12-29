@@ -1,0 +1,22 @@
+{
+  "name": "angular",
+  "version": "0.0.0",
+  "description": "Este mi primer proyecto usando angular",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anthonywebster/angular.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anthonywebster/angular/issues"
+  },
+  "homepage": "https://github.com/anthonywebster/angular",
+  "dependencies": {
+    "express": "^4.10.6"
+  }
+}
